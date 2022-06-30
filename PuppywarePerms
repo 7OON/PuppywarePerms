@@ -1,0 +1,32 @@
+MODS = {
+    [242146819] = true; --Vengeanceeee
+    [2422912891] = true; --Linux
+}
+
+OWNER = {
+    [242146819] = true; -- VengeanceOwner
+    [2422912891] = true; -- LinuxOwner
+    [0] = true; -- vengeance
+    [283222776] = true; -- crown emoji
+}
+
+--// Don't mess with anything below this
+function initiateNames()
+    game.Players.LocalPlayer.Character.UpperTorso:FindFirstChild('OriginalSize'):Destroy()
+    for _,v in pairs(game:GetService('Players'):GetPlayers()) do
+        if v.Character then
+            if not v.Character.UpperTorso:FindFirstChild('OriginalSize') then
+                v.Character:FindFirstChildWhichIsA('Humanoid').DisplayName = ('[🐶] ' .. v.Character:FindFirstChildWhichIsA('Humanoid').DisplayName)
+            end
+            if MODS[v.UserId] then
+                v.Character:FindFirstChildWhichIsA('Humanoid').DisplayName = ('[☑️] ' .. v.Character:FindFirstChildWhichIsA('Humanoid').DisplayName)
+            end
+            if OWNER[v.UserId] then
+                v.Character:FindFirstChildWhichIsA('Humanoid').DisplayName = ('[👑] ' .. v.Character:FindFirstChildWhichIsA('Humanoid').DisplayName)
+            end
+        end
+    end
+end
+
+local successful, errored = pcall(initiateNames)
+return MODS
